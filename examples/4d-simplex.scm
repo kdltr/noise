@@ -14,19 +14,20 @@
 (define time (f32vector 0))
 
 (define-pipeline simple-shader
-  ((#:vertex) ((vertex #:vec2))
+  ((#:vertex input: ((vertex #:vec2))
+             output: ((pos #:vec2)))
    (define (main) #:void
      (set! gl:position (vec4 vertex 0.0 1.0))
-     (set! pos vertex))
-   -> ((pos #:vec2)))
-  ((#:fragment use: (simplex-noise-4d)) ((pos #:vec2) uniform: (time #:float))
+     (set! pos vertex)))
+  ((#:fragment input: ((pos #:vec2))
+               uniform: ((time #:float))
+               output: ((frag-color #:vec4))
+               use: (simplex-noise-4d))
    (begin
      (define (main) #:void
        (let ((n #:float (+ 0.5 (* 0.5 (fractal-snoise (vec4 pos time 0)
-                                                      5 1 0.5 2 0.5
-                                              )))))
-         (set! frag-color (vec4 n n n 1.0)))))
-   -> ((frag-color #:vec4))))
+                                                      5 1 0.5 2 0.5)))))
+         (set! frag-color (vec4 n n n 1.0)))))))
 
 (glfw:key-callback
  (lambda (window key scancode action mods)
@@ -37,7 +38,6 @@
 (glfw:with-window (480 480 "Example" resizable: #f)
   (gl:init)
   (compile-pipelines)
-  (display (shader-source simplex-noise-4d))
   (let* ((vao (make-vao vertex-data index-data
                         `((,(pipeline-attribute 'vertex simple-shader) float: 2))))
          (renderable (make-simple-shader-renderable

@@ -12,17 +12,17 @@
                               0 2 3))
 
 (define-pipeline simple-shader
-  ((#:vertex) ((vertex #:vec2))
-     (define (main) #:void
-       (set! gl:position (vec4 vertex 0.0 1.0))
-       (set! pos vertex))
-     -> ((pos #:vec2)))
-  ((#:fragment use: (simplex-noise-2d)) ((pos #:vec2))
-   (begin
-     (define (main) #:void
-       (let ((n #:float (+ 0.5 (* 0.5 (fractal-snoise pos 5 1 0.5 2 0.5)))))
-         (set! frag-color (vec4 n n n 1.0)))))
-     -> ((frag-color #:vec4))))
+  ((#:vertex input: ((vertex #:vec2))
+             output: ((pos #:vec2))) 
+   (define (main) #:void
+     (set! gl:position (vec4 vertex 0.0 1.0))
+     (set! pos vertex)))
+  ((#:fragment input: ((pos #:vec2))
+               output: ((frag-color #:vec4))
+               use: (simplex-noise-2d))
+   (define (main) #:void
+     (let ((n #:float (+ 0.5 (* 0.5 (fractal-snoise pos 5 1 0.5 2 0.5)))))
+       (set! frag-color (vec4 n n n 1.0))))))
 
 (glfw:key-callback
  (lambda (window key scancode action mods)
