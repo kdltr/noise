@@ -1,0 +1,9 @@
+;; noise.meta -*- scheme -*-
+
+((synopsis "Noise generation functions")
+ (author "Alex Charlton")
+ (category graphics)
+ (license "BSD")
+ (depends)
+ (test-depends test)
+ (foreign-depends))
