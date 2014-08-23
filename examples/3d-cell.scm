@@ -27,7 +27,7 @@
 
 ;;; Matrices
 (define projection-matrix
-  (perspective 640 480 0.1 100 45))
+  (perspective 480 480 0.1 100 70))
 
 (define view-matrix
   (look-at 1.5 2 2
