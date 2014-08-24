@@ -24,7 +24,7 @@
                output: ((frag-color #:vec4))
                use: (flow-noise-2d))
    (define (main) #:void
-     (set! isotropic true)
+     (set! isotropic #t)
      (let* ((g1 #:vec2) (g2 #:vec2)
             (n1 #:float (flow-noise (* pos 0.5) (* 0.2 time) g1))
             (n2 #:float (flow-noise (+ (* pos 2) (* g1 0.5)) (* 0.51 time) g2))

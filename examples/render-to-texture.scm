@@ -35,10 +35,9 @@
                                    3 7 4
                                    3 4 0))
 
-
 ;;; Matrices
 (define projection-matrix
-  (perspective 640 480 0.1 100 70))
+  (perspective 480 480 0.1 100 70))
 
 (define view-matrix
   (look-at 1.5 0.5 2
@@ -100,12 +99,13 @@
     (render-noise-shader renderable)))
 
 ;;; Initialization and main loop
-(glfw:with-window (640 480 "Example" resizable: #f)
+(glfw:with-window (480 480 "Example" resizable: #f)
+  (display cell-noise-3d-source)
   (gl:init)
   (gl:enable gl:+depth-test+)
   (gl:depth-func gl:+less+)
   (compile-pipelines)
-  (receive (fbo tex _) (create-framebuffer 640 480)
+  (receive (fbo tex _) (create-framebuffer 480 480)
     (let* ((noise-vao (make-vao rect-vertex-data rect-index-data
                                 `((,(pipeline-attribute 'vertex noise-shader) float: 2))))
            (noise-renderable (make-noise-shader-renderable
@@ -124,6 +124,7 @@
                             tex: tex)))
       (let loop ()
         (render-noise fbo noise-renderable)
+        ;; At this point the texture with the noise (tex) could be transfered to RAM with e.g. gl:get-tex-image
         (glfw:swap-buffers (glfw:window))
         (gl:clear (bitwise-ior gl:+color-buffer-bit+ gl:+depth-buffer-bit+))
         (render-box-shader box-renderable)
