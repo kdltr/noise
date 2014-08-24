@@ -108,7 +108,6 @@
 
 ;;; Initialization and main loop
 (glfw:with-window (480 480 "Example" resizable: #f)
-  (display cell-noise-3d-source)
   (gl:init)
   (gl:enable gl:+depth-test+)
   (gl:depth-func gl:+less+)
