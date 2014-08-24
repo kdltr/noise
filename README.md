@@ -77,7 +77,7 @@ Given a 3D position, return the a vector containing the distance to the nearest 
 
     isotropic -> #:bool
 
-A variable that controls whether the noise created is faster but less isotropic (set to `#f`) or slower but more isotropic (set to `#t`). Defaults to `f`.
+A variable that controls whether the noise created is faster but less isotropic (set to `#f`) or slower but more isotropic (set to `#t`). Defaults to `#f`.
 
     (flow-noise (POSITION (in #:vec2)) (ROTATION (in #:float)) (GRADIENT (out #:vec2))
       -> #:float
@@ -92,10 +92,10 @@ Given a 2D position and rotation, returns the value of the flow-noise at that po
     [string] cell-noise-3d-source
     [string] flow-noise-2d-source
 
-The source for each shader is accessible from these constants, in the case that the user does not want to directly use glls.
+The source for each shader is provided in these strings, in the case that the user does not want to directly use glls.
 
 ## Examples
-An example of the use of each type of noise can be seen in [the examples director](https://github.com/AlexCharlton/noise/tree/master/examples). These examples rely on [opengl-glew](http://wiki.call-cc.org/eggref/4/opengl-glew), [gl-math](http://wiki.call-cc.org/eggref/4/gl-math), [gl-utils](http://wiki.call-cc.org/eggref/4/gl-utils), and [glfw3](http://wiki.call-cc.org/eggref/4/glfw3). They can either be run directly with `csi` or, since they use `glls-render`, they can be compiled by linking with GL (e.g. `csc -lGL 2d-simplex.scm`).
+An example of the use of each type of noise can be seen in [the examples directory](https://github.com/AlexCharlton/noise/tree/master/examples). These examples rely on [opengl-glew](http://wiki.call-cc.org/eggref/4/opengl-glew), [gl-math](http://wiki.call-cc.org/eggref/4/gl-math), [gl-utils](http://wiki.call-cc.org/eggref/4/gl-utils), and [glfw3](http://wiki.call-cc.org/eggref/4/glfw3). They can either be run directly with `csi` or, since they use `glls-render`, they can be compiled by linking with GL (e.g. `csc -lGL 2d-simplex.scm`).
 
 It is important to note how the noise shaders are being imported in these examples: through [glls’ `use` keyword](http://wiki.call-cc.org/eggref/4/glls#shaders-that-export). This makes it so that the prototypes from the noise shaders are automatically added to the examples’ fragment shaders. 
 
