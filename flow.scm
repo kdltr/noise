@@ -10,7 +10,7 @@
   (%define K 0.0243902439) ; 1/41
   (%define TWO-PI 6.28318530718)
 
-  (define isotropic #:bool false)
+  (define isotropic #:bool #f)
 
   (define (permute (x #:float)) #:float
     (mod (* (+ (* x 34.0)
