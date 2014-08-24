@@ -1,9 +1,7 @@
 ;; noise.meta -*- scheme -*-
 
-((synopsis "Noise generation functions")
+((synopsis "Noise generation functions on the GPU")
  (author "Alex Charlton")
  (category graphics)
  (license "BSD")
- (depends)
- (test-depends test)
- (foreign-depends))
+ (depends glls))
