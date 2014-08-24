@@ -1,3 +1,10 @@
+;;;; 3d-simplex.scm
+
+;;;; NOTE:
+;;;; This uses glls-render, so if this file is compiled it must be linked with OpenGL
+;;;; E.g.:
+;;;; csc -lGL 3d-simplex.scm
+
 (import chicken scheme)
 (use glls-render (prefix glfw3 glfw:) (prefix opengl-glew gl:) gl-math gl-utils
      noise)
