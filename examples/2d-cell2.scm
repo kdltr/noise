@@ -44,7 +44,6 @@
 (glfw:with-window (480 480 "Example" resizable: #f)
   (gl:init)
   (compile-pipelines)
-  (display (shader-source cell-noise-2d))
   (let* ((vao (make-vao vertex-data index-data
                         `((,(pipeline-attribute 'vertex simple-shader) float: 2))))
          (renderable (make-simple-shader-renderable
@@ -55,7 +54,7 @@
       (glfw:swap-buffers (glfw:window))
       (gl:clear (bitwise-ior gl:+color-buffer-bit+ gl:+depth-buffer-bit+))
       (render-simple-shader renderable)
-      (gl:check-error)
+      (check-error)
       (glfw:poll-events)
       (unless (glfw:window-should-close (glfw:window))
         (loop)))))

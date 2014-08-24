@@ -55,7 +55,7 @@
       (glfw:swap-buffers (glfw:window))
       (gl:clear (bitwise-ior gl:+color-buffer-bit+ gl:+depth-buffer-bit+))
       (render-simple-shader renderable)
-      (gl:check-error)
+      (check-error)
       (glfw:poll-events)
       (f32vector-set! time 0 (/ (glfw:get-time)
                                 5))
