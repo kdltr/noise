@@ -63,13 +63,13 @@
   (define (fractal-snoise (v #:vec2) (octaves #:int)
                           (frequency #:float)
                           (amplitude #:float)
-                          (persistance #:float)
+                          (persistence #:float)
                           (lacunarity #:float))
       #:float
     (let ((r #:float 0))
       (do-times (o octaves)
         (+= r (* amplitude (snoise (* v frequency))))
-        (*= frequency persistance)
+        (*= frequency persistence)
         (*= amplitude lacunarity))
       r))
   ) ;end shader
@@ -162,13 +162,13 @@
   (define (fractal-snoise (v #:vec3) (octaves #:int)
                           (frequency #:float)
                           (amplitude #:float)
-                          (persistance #:float)
+                          (persistence #:float)
                           (lacunarity #:float))
        #:float
     (let ((r #:float 0))
       (do-times (o octaves)
         (+= r (* amplitude (snoise (* v frequency))))
-        (*= frequency persistance)
+        (*= frequency persistence)
         (*= amplitude lacunarity))
       r))
   ) ;end shader
@@ -284,13 +284,13 @@
   (define (fractal-snoise (v #:vec4) (octaves #:int)
                           (frequency #:float)
                           (amplitude #:float)
-                          (persistance #:float)
+                          (persistence #:float)
                           (lacunarity #:float))
       #:float
     (let ((r #:float 0))
       (do-times (o octaves)
         (+= r (* amplitude (snoise (* v frequency))))
-        (*= frequency persistance)
+        (*= frequency persistence)
         (*= amplitude lacunarity))
       r))
   ) ;end shader
