@@ -40,9 +40,9 @@
   (perspective 480 480 0.1 100 70))
 
 (define view-matrix
-  (look-at 1.5 2 2
-           0.5 0.5 0.5
-           0 1 0))
+  (look-at (make-point 1.5 2 2)
+           (make-point 0.5 0.5 0.5)
+           (make-point 0 1 0)))
 
 (define model-matrix (mat4-identity))
 
