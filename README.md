@@ -84,7 +84,7 @@ A variable that controls whether the noise created is faster but less isotropic 
 
 Given a 2D position and rotation, returns the value of the flow-noise at that point as well as the gradient (via `GRADIENT`).
 
-#### Shader source
+### Shader source
     [string] simplex-noise-2d-source
     [string] simplex-noise-3d-source
     [string] simplex-noise-4d-source
