@@ -12,30 +12,30 @@
 
 (define time (f32vector 0))
 
-;;; VAO data
-(define vertex-data (f32vector 0 0 0
-                               1 0 0
-                               1 1 0
-                               0 1 0
-                               0 0 1
-                               1 0 1
-                               1 1 1
-                               0 1 1))
+(define cube (make-mesh vertices: '(attributes: ((position #:float 3))
+                                    initial-elements: ((position . (0 0 0
+                                                                    1 0 0
+                                                                    1 1 0
+                                                                    0 1 0
+                                                                    0 0 1
+                                                                    1 0 1
+                                                                    1 1 1
+                                                                    0 1 1))))
+                        indices: '(type: #:ushort
+                                   initial-elements: (0 1 2
+                                                      2 3 0
+                                                      7 6 5
+                                                      5 4 7
+                                                      0 4 5
+                                                      5 1 0
+                                                      1 5 6
+                                                      6 2 1
+                                                      2 6 7
+                                                      7 3 2
+                                                      3 7 4
+                                                      3 4 0))))
 
-(define index-data (u16vector 0 1 2
-                              2 3 0
-                              7 6 5
-                              5 4 7
-                              0 4 5
-                              5 1 0
-                              1 5 6
-                              6 2 1
-                              2 6 7
-                              7 3 2
-                              3 7 4
-                              3 4 0))
-
-;;; Matrices
+;; Matrices
 (define projection-matrix
   (perspective 480 480 0.1 100 70))
 
@@ -52,12 +52,12 @@
                 ))
 
 (define-pipeline simple-shader
-  ((#:vertex input: ((vertex #:vec3))
+  ((#:vertex input: ((position #:vec3))
              uniform: ((mvp #:mat4))
              output: ((pos #:vec3)))
    (define (main) #:void
-     (set! gl:position (* mvp (vec4 vertex 1.0)))
-     (set! pos vertex)))
+     (set! gl:position (* mvp (vec4 position 1.0)))
+     (set! pos position)))
   ((#:fragment input: ((pos #:vec3))
                uniform: ((time #:float))
                output: ((frag-color #:vec4))
@@ -79,14 +79,11 @@
   (gl:enable gl:+depth-test+)
   (gl:depth-func gl:+less+)
   (compile-pipelines)
-  (let* ((vao (make-vao vertex-data index-data
-                        `((,(pipeline-attribute 'vertex simple-shader) float: 3))))
-         (renderable (make-simple-shader-renderable
-                      n-elements: (u16vector-length index-data)
-                      element-type: (type->gl-type ushort:)
-                      vao: vao
-                      mvp: mvp
-                      time: time)))
+  (mesh-attribute-locations-set! cube (pipeline-mesh-attributes simple-shader))
+  (mesh-make-vao cube)
+  (let* ((renderable (make-simple-shader-renderable mesh: cube
+                                                    mvp: mvp
+                                                    time: time)))
     
     (let loop ()
       (glfw:swap-buffers (glfw:window))

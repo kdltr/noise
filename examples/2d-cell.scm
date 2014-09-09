@@ -9,21 +9,21 @@
 (use glls-render (prefix glfw3 glfw:) (prefix opengl-glew gl:) gl-math gl-utils
      noise)
 
-;;; VAO data
-(define vertex-data (f32vector -1 -1
-                                1 -1
-                                1  1
-                               -1  1))
-
-(define index-data (u16vector 0 1 2
-                              0 2 3))
+(define rect (make-mesh vertices: '(attributes: ((position #:float 2))
+                                    initial-elements: ((position . (-1 -1
+                                                                     1 -1
+                                                                     1  1
+                                                                    -1  1))))
+                        indices: '(type: #:ushort
+                                   initial-elements: (0 1 2
+                                                      0 2 3))))
 
 (define-pipeline simple-shader
-  ((#:vertex input: ((vertex #:vec2))
+  ((#:vertex input: ((position #:vec2))
              output: ((pos #:vec2))) 
    (define (main) #:void
-     (set! gl:position (vec4 vertex 0.0 1.0))
-     (set! pos vertex)))
+     (set! gl:position (vec4 position 0.0 1.0))
+     (set! pos position)))
   ((#:fragment input: ((pos #:vec2))
                output: ((frag-color #:vec4))
                use: (cell-noise-2d))
@@ -41,12 +41,9 @@
 (glfw:with-window (480 480 "Example" resizable: #f)
   (gl:init)
   (compile-pipelines)
-  (let* ((vao (make-vao vertex-data index-data
-                        `((,(pipeline-attribute 'vertex simple-shader) float: 2))))
-         (renderable (make-simple-shader-renderable
-                      n-elements: (u16vector-length index-data)
-                      element-type: (type->gl-type ushort:)
-                      vao: vao)))
+  (mesh-attribute-locations-set! rect (pipeline-mesh-attributes simple-shader))
+  (mesh-make-vao rect)
+  (let* ((renderable (make-simple-shader-renderable mesh: rect)))
     (let loop ()
       (glfw:swap-buffers (glfw:window))
       (gl:clear (bitwise-ior gl:+color-buffer-bit+ gl:+depth-buffer-bit+))
