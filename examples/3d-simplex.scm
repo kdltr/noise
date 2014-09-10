@@ -46,7 +46,7 @@
   (gl:init)
   (compile-pipelines)
   (mesh-attribute-locations-set! rect (pipeline-mesh-attributes simple-shader))
-  (mesh-make-vao rect)
+  (mesh-make-vao! rect)
   (let* ((renderable (make-simple-shader-renderable mesh: rect
                                                     time: time)))
     

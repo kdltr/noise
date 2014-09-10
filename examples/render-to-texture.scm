@@ -133,8 +133,8 @@
   (compile-pipelines)
   (mesh-attribute-locations-set! rect (pipeline-mesh-attributes noise-shader))
   (mesh-attribute-locations-set! cube (pipeline-mesh-attributes box-shader))
-  (mesh-make-vao rect)
-  (mesh-make-vao cube)
+  (mesh-make-vao! rect)
+  (mesh-make-vao! cube)
   (receive (fbo tex _) (create-framebuffer 480 480)
     (let* ((noise-renderable (make-noise-shader-renderable mesh: rect
                                                            time: time))
