@@ -45,8 +45,7 @@
 (glfw:with-window (480 480 "Example" resizable: #f)
   (gl:init)
   (compile-pipelines)
-  (mesh-attribute-locations-set! rect (pipeline-mesh-attributes simple-shader))
-  (mesh-make-vao! rect)
+  (mesh-make-vao! rect (pipeline-mesh-attributes simple-shader))
   (let* ((renderable (make-simple-shader-renderable mesh: rect
                                                     time: time)))
     

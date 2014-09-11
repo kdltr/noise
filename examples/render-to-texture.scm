@@ -53,14 +53,6 @@
                                                       7 3 2
                                                       3 7 4
                                                       3 4 0))))
-(define cube-vertex-data (f32vector 0 0 0 0 0
-                                    1 0 0 1 0
-                                    1 1 0 1 1
-                                    0 1 0 0 1
-                                    0 0 1 1 0 
-                                    1 0 1 0 0
-                                    1 1 1 0 1
-                                    0 1 1 1 1))
 
 ;;; Matrices
 (define projection-matrix
@@ -131,10 +123,8 @@
   (gl:enable gl:+depth-test+)
   (gl:depth-func gl:+less+)
   (compile-pipelines)
-  (mesh-attribute-locations-set! rect (pipeline-mesh-attributes noise-shader))
-  (mesh-attribute-locations-set! cube (pipeline-mesh-attributes box-shader))
-  (mesh-make-vao! rect)
-  (mesh-make-vao! cube)
+  (mesh-make-vao! rect (pipeline-mesh-attributes noise-shader))
+  (mesh-make-vao! cube (pipeline-mesh-attributes box-shader))
   (receive (fbo tex _) (create-framebuffer 480 480)
     (let* ((noise-renderable (make-noise-shader-renderable mesh: rect
                                                            time: time))

@@ -75,8 +75,7 @@
   (gl:enable gl:+depth-test+)
   (gl:depth-func gl:+less+)
   (compile-pipelines)
-  (mesh-attribute-locations-set! cube (pipeline-mesh-attributes simple-shader))
-  (mesh-make-vao! cube)
+  (mesh-make-vao! cube (pipeline-mesh-attributes simple-shader))
   (let* ((renderable (make-simple-shader-renderable mesh: cube
                                                     mvp: mvp)))
     (let loop ()
