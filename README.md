@@ -14,40 +14,55 @@ It is part of the [Chicken egg index](http://wiki.call-cc.org/chicken-projects/e
 ## Documentation
 The following sections describe the shaders that noise exports and the symbols that they, in turn, export.
 
-### simplex-noise-2d
-     (snoise (POSITION #:vec2)) -> #:float
+    [constant] simplex-noise-2d
+
+**Exports**
+
+    (snoise (POSITION #:vec2)) -> #:float
 
 Given a 2D position, return the simplex noise value at that point.
 
-     (fractal-snoise (POSITION #:vec2) (OCTAVES #:int) (FREQUENCY #:float) 
-                     (AMPLITUDE #:float) (PERSISTENCE #:float) (LACUNARITY #:float) 
+    (fractal-snoise (POSITION #:vec2) (OCTAVES #:int) (FREQUENCY #:float) 
+                    (AMPLITUDE #:float) (PERSISTENCE #:float) (LACUNARITY #:float) 
          -> #:float
 
 Given a 2D position, return the fractal simplex noise value at that point. `OCTAVES` is the number of octaves of noise to sample, `FREQUENCY` is the frequency of the first octave, `AMPLITUDE` is the amplitude of the first octave, `PERSISTENCE` is the amount by which the frequency is scaled over each octave, `LACUNARITY` is the amount by which the amplitude is scaled over each octave.
 
-### simplex-noise-3d
-     (snoise (POSITION #:vec3)) -> #:float
+
+    [constant] simplex-noise-3d
+
+**Exports**
+
+    (snoise (POSITION #:vec3)) -> #:float
 
 Given a 3D position, return the simplex noise value at that point.
 
-     (fractal-snoise (POSITION #:vec3) (OCTAVES #:int) (FREQUENCY #:float) 
+    (fractal-snoise (POSITION #:vec3) (OCTAVES #:int) (FREQUENCY #:float) 
                      (AMPLITUDE #:float) (PERSISTENCE #:float) (LACUNARITY #:float) 
          -> #:float
 
 Given a 3D position, return the fractal simplex noise value at that point. `OCTAVES` is the number of octaves of noise to sample, `FREQUENCY` is the frequency of the first octave, `AMPLITUDE` is the amplitude of the first octave, `PERSISTENCE` is the amount by which the frequency is scaled over each octave, `LACUNARITY` is the amount by which the amplitude is scaled over each octave
 
-### simplex-noise-4d
-     (snoise (POSITION #:vec4)) -> #:float
+
+    [constant] simplex-noise-4d
+
+**Exports**
+
+    (snoise (POSITION #:vec4)) -> #:float
 
 Given a 4D position, return the simplex noise value at that point.
 
-     (fractal-snoise (POSITION #:vec4) (OCTAVES #:int) (FREQUENCY #:float) 
-                     (AMPLITUDE #:float) (PERSISTENCE #:float) (LACUNARITY #:float) 
+    (fractal-snoise (POSITION #:vec4) (OCTAVES #:int) (FREQUENCY #:float) 
+                    (AMPLITUDE #:float) (PERSISTENCE #:float) (LACUNARITY #:float) 
          -> #:float
 
 Given a 4D position, return the fractal simplex noise value at that point. `OCTAVES` is the number of octaves of noise to sample, `FREQUENCY` is the frequency of the first octave, `AMPLITUDE` is the amplitude of the first octave, `PERSISTENCE` is the amount by which the frequency is scaled over each octave, `LACUNARITY` is the amount by which the amplitude is scaled over each octave
 
-### cell-noise-2d
+
+    [constant] cell-noise-2d
+
+**Exports**
+
     jitter -> #:float
 
 A variable that sets the amount of possible “jitter” for each feature point. Should be a value between 0.0 and 1.0, with 0.0 creating a regular grid of points and 1.0 creating the greatest randomness. If there are problems with discontinuities, decrease the jitter. Defaults to 0.9.
@@ -60,7 +75,11 @@ Given a 2D position, return the distance to the nearest feature point. This is f
 
 Given a 2D position, return the a vector containing the distance to the nearest feature point and second nearest feature point (`(F1 F2)`).
 
-### cell-noise-3d
+
+    [constant] cell-noise-3d
+
+**Exports**
+
     jitter -> #:float
 
 A variable that sets the amount of possible “jitter” for each feature point. Should be a value between 0.0 and 1.0, with 0.0 creating a regular grid of points and 1.0 creating the greatest randomness. If there are problems with discontinuities, decrease the jitter. Defaults to 0.9.
@@ -73,7 +92,10 @@ Given a 3D position, return the distance to the nearest feature point. This is f
 
 Given a 3D position, return the a vector containing the distance to the nearest feature point and second nearest feature point (`(F1 F2)`).
 
-### flow-nosie-2d
+
+    [constant] flow-nosie-2d
+
+**Exports**
 
     isotropic -> #:bool
 
