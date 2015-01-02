@@ -6,7 +6,6 @@
 ;;;; csc -lGL 4d-simplex.scm
 
 (import chicken scheme)
-(import chicken scheme)
 (use glls-render (prefix glfw3 glfw:) (prefix opengl-glew gl:) gl-math gl-utils
      noise)
 
@@ -62,11 +61,10 @@
                uniform: ((time #:float))
                output: ((frag-color #:vec4))
                use: (simplex-noise-4d))
-   (begin
-     (define (main) #:void
-       (let ((n #:float (+ 0.2 (* 0.3 (fractal-snoise (vec4 pos time)
-                                                      5 1 0.5 2 0.5)))))
-         (set! frag-color (vec4 n n n 1.0)))))))
+   (define (main) #:void
+     (let ((n #:float (+ 0.2 (* 0.3 (fractal-snoise (vec4 pos time)
+                                                    5 1 0.5 2 0.5)))))
+       (set! frag-color (vec4 n n n 1.0))))))
 
 (glfw:key-callback
  (lambda (window key scancode action mods)

@@ -6,7 +6,6 @@
 ;;;; csc -lGL render-to-texture.scm
 
 (import chicken scheme)
-(import chicken scheme)
 (use glls-render (prefix glfw3 glfw:) (prefix opengl-glew gl:) gl-math gl-utils
      noise)
 
