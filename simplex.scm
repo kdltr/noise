@@ -1,8 +1,7 @@
 ;;;; These shaders are a direct port of https://github.com/ashima/webgl-noise
 
 (define-shader simplex-noise-2d
-    (#:fragment export: (snoise fractal-snoise)
-                version: 120)
+    (#:fragment export: (snoise fractal-snoise))
   (define (mod289 (x #:vec3)) #:vec3
     (- x (* (floor (* x (/ 1.0 289.0)))
             289.0)))
@@ -75,8 +74,7 @@
   ) ;end shader
 
 (define-shader simplex-noise-3d
-    (#:fragment export: (snoise fractal-snoise)
-                version: 120)
+    (#:fragment export: (snoise fractal-snoise))
   (define (mod289 (x #:vec3)) #:vec3
     (- x (* (floor (* x (/ 1.0 289.0)))
             289.0)))
@@ -174,8 +172,7 @@
   ) ;end shader
 
 (define-shader simplex-noise-4d
-    (#:fragment export: (snoise fractal-snoise)
-                version: 120)
+    (#:fragment export: (snoise fractal-snoise))
   (define (mod289 (x #:vec4)) #:vec4
     (- x (* (floor (* x (/ 1.0 289.0)))
             289.0)))

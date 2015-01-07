@@ -2,8 +2,7 @@
 
 (define-shader flow-noise-2d
     (#:fragment export: (flow-noise
-                         isotropic)
-                version: 120)
+                         isotropic))
 
   (%define F2 0.366025403)
   (%define G2 0.211324865)

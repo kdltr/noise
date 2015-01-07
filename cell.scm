@@ -3,8 +3,7 @@
 (define-shader cell-noise-2d
     (#:fragment export: (cell-noise
                          cell-noise2
-                         jitter)
-                version: 120)
+                         jitter))
 
   (define (permute (x #:vec3)) #:vec3
     (mod (* (+ (* x 34.0)
@@ -97,8 +96,7 @@
 (define-shader cell-noise-3d
     (#:fragment export: (cell-noise
                          cell-noise2
-                         jitter)
-                version: 120)
+                         jitter))
 
   (define (permute (x #:vec3)) #:vec3
     (mod (* (+ (* x 34.0)
