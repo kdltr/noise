@@ -7,7 +7,7 @@
 
 (import chicken scheme)
 (use glls-render (prefix glfw3 glfw:) (prefix opengl-glew gl:) gl-math gl-utils
-     noise)
+     noise srfi-4)
 
 (define rect (make-mesh vertices: '(attributes: ((position #:float 2))
                                     initial-elements: ((position . (-1 -1
@@ -18,7 +18,7 @@
                                    initial-elements: (0 1 2
                                                       0 2 3))))
 
-(define time (f32vector 0))
+(define time (make-f32vector 1 0 #t))
 
 (define-pipeline simple-shader
   ((#:vertex input: ((position #:vec2))
