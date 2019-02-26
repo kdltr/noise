@@ -12,8 +12,7 @@
                cell-noise-3d-source
                flow-noise-2d-source)
 
-(import chicken scheme)
-(use glls)
+(import scheme (chicken base) glls)
 (include "simplex")
 (include "cell")
 (include "flow")

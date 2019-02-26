@@ -1,0 +1,8 @@
+;; noise.egg -*- scheme -*-
+
+((synopsis "Noise generation functions on the GPU")
+ (author "Alex Charlton")
+ (category graphics)
+ (license "BSD")
+ (dependencies glls)
+ (components (extension noise)))

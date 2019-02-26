@@ -5,8 +5,8 @@
 ;;;; E.g.:
 ;;;; csc -lGL 3d-cell.scm
 
-(import chicken scheme)
-(use glls-render (prefix glfw3 glfw:) (prefix opengl-glew gl:) gl-math gl-utils
+(import scheme (chicken base) (chicken bitwise)
+glls-render (prefix glfw3 glfw:) (prefix epoxy gl:) gl-math gl-utils
      noise)
 
 ;;; VAO data
@@ -70,8 +70,10 @@
     (glfw:set-window-should-close window 1))))
 
 ;;; Initialization and main loop
-(glfw:with-window (480 480 "Example" resizable: #f)
-  (gl:init)
+(glfw:with-window (480 480 "Example" resizable: #f
+                   client-api: glfw:+opengl-api+
+                   context-version-major: 3
+                   context-version-minor: 3)
   (gl:enable gl:+depth-test+)
   (gl:depth-func gl:+less+)
   (compile-pipelines)
