@@ -1,9 +1,9 @@
 ;;;; 3d-cell2.scm
 
 ;;;; NOTE:
-;;;; This uses glls-render, so if this file is compiled it must be linked with OpenGL
+;;;; This uses glls-render, so if this file is compiled it must be linked with libepoxy
 ;;;; E.g.:
-;;;; csc -lGL 3d-cell2.scm
+;;;; csc -L -lepoxy 3d-cell2.scm
 
 (import scheme (chicken base) (chicken bitwise)
 glls-render (prefix glfw3 glfw:) (prefix epoxy gl:) gl-math gl-utils

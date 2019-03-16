@@ -1,9 +1,9 @@
 ;;;; render-to-texture.scm
 
 ;;;; NOTE:
-;;;; This uses glls-render, so if this file is compiled it must be linked with OpenGL
+;;;; This uses glls-render, so if this file is compiled it must be linked with libepoxy
 ;;;; E.g.:
-;;;; csc -lGL render-to-texture.scm
+;;;; csc -L -lepoxy render-to-texture.scm
 
 (import scheme (chicken base) (chicken bitwise)
 glls-render (prefix glfw3 glfw:) (prefix epoxy gl:) gl-math gl-utils

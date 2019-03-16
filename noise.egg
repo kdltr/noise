@@ -2,6 +2,7 @@
 
 ((synopsis "Noise generation functions on the GPU")
  (author "Alex Charlton")
+ (maintainer "Adrien (Kooda) Ramos")
  (category graphics)
  (license "BSD")
  (dependencies glls)

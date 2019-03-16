@@ -1,9 +1,0 @@
-;; noise.setup -*- scheme -*-
-
-(compile -d0 -O2 -J -s noise.scm)
-(compile -d0 -O2 -s noise.import.scm)
-
-(install-extension
- 'noise
- '("noise.so" "noise.import.so")
- '((version "0.1.5")))
